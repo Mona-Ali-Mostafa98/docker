@@ -7,18 +7,26 @@ Learn how to run a container using the hello-world image and manage containers a
 ### Steps
 #### 1. Run a Container with hello-world Image
 ```bash
+docker pull hello-world
+docker run hello-world
 ```
 #### 2. Check Container Status and Explain
 ```bash
+docker ps -a
+CONTAINER ID   IMAGE         COMMAND    CREATED              STATUS                          PORTS     NAMES
+e08daeaae1ad   hello-world   "/hello"   About a minute ago   Exited (0) About a minute ago             charming_elbakyan
 ```
 #### 3. Start the Stopped Container
 ```bash
+docker start charming_elbakyan   or   docker start e08daeaae1ad
 ```
 #### 4. Remove the Container
 ```bash
+docker rm charming_elbakyan
 ```
 #### 5. Remove the Image
 ```bash
+docker rmi hello-world 
 ```
 ---
 
