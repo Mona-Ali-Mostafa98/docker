@@ -13,6 +13,7 @@ docker run hello-world
 #### 2. Check Container Status and Explain
 ```bash
 docker ps -a
+- output : 
 CONTAINER ID   IMAGE         COMMAND    CREATED              STATUS                          PORTS     NAMES
 e08daeaae1ad   hello-world   "/hello"   About a minute ago   Exited (0) About a minute ago             charming_elbakyan
 ```
