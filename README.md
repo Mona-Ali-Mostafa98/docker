@@ -38,24 +38,51 @@ Run an Ubuntu container in interactive mode, create a file inside it, and manage
 ### Steps
 #### 1. Run Ubuntu Container in Interactive Mode
 ```bash
+docker pull ubuntu
+docker run -it ubuntu
+- output: 
+root@574d98a6416e:/# 
+
+if image like nginx can run use:
+docker run -d nginx
+docker exec -it festive_galois bash
 ```
 #### 2. Create a File inside the Container
 ```bash
+touch hello-docker -> write any content in it 
 ```
 #### 3. Stop and Remove the Container
 ```bash
+exit
+
+docker ps -a
+- output
+CONTAINER ID   IMAGE     COMMAND       CREATED              STATUS                            PORTS     NAMES
+574d98a6416e   ubuntu    "/bin/bash"   4 minutes ago   Exited (0) 55 seconds ago                        magical_nash
+
+docker stop magical_nash
+docker rm magical_nash
 ```
 #### 4. Check File Status
 ```bash
+docker run --rm -it ubuntu ls
+
+File hello-docker not founded
+
 ```
 #### 5. What happened to hello-docker file?
 ```bash
+All changes made inside the container are discarded, including the hello-docker file after the container is removed.
+So, The file hello-docker is deleted along with the container.
+
 ```
 #### 6. Remove All Stopped Containers
 ```bash
+docker container prune -f
 ```
 #### 7. Bonus: Remove All Containers in One Command
 ```bash
+docker system prune -af
 ```
 
 ---
