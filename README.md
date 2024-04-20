@@ -59,6 +59,7 @@ Run an Ubuntu container in interactive mode, create a file inside it, and manage
 ```
 
 ---
+
 ## Task 3: Creating a Custom Nginx Docker Image
 ### Objective
 Create a custom Docker image using Nginx and a local HTML file.
@@ -66,15 +67,45 @@ Create a custom Docker image using Nginx and a local HTML file.
 ### Steps
 #### 1. Create a Local HTML File
 ```bash
+- docker pull nginx
+- docker images
+output:
+REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+nginx        latest    2ac752d7aeb1   4 days ago    188MB
+
+- vim index.html -> write any content in it 
 ```
 #### 2. Write Dockerfile and Copy the HTML file to the Docker Image
 ```bash
+-vim Dockerfile
+
+- Content: 
+FROM nginx                                                                                                                                    
+COPY index.html /usr/share/nginx/html/index.html
 ```
+
 #### 3. Run Container with New Image
 ```bash
+docker build -t nginx-mona:v1.0 .
+docker images
+
+- Output:
+REPOSITORY     TAG       IMAGE ID       CREATED         SIZE
+nginx-mona   v1.0     ed9de6f2b5c4   4 seconds ago   188MB
+
+docker run -d -p 8080:80 nginx-mona:v1.0
+
+or by use image id
+
+docker run -d -p 8080:80 ed9de6f2b5c4
+
+- Output:
+d5dec299074c5d5921207076aa26a1f4fa4432c471965efe88c474016d80ff2e
 ```
 
 #### 4. Test the Container, open your browser and navigate to http://localhost:8088 to check if everything is okay
 ```bash
+I use play ground and when use port 8080 and get link when open it find content of index.html
+https://66240ecb7c6e0b6f0508504f-ab6d62.node-d3b7.iximiuz.com/
+![Example Image](1.png)
 ```
-
