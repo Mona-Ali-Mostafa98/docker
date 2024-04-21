@@ -39,7 +39,8 @@ Run an Ubuntu container in interactive mode, create a file inside it, and manage
 #### 1. Run Ubuntu Container in Interactive Mode
 ```bash
 docker pull ubuntu
-docker run -it ubuntu
+docker run -it ubuntu 
+
 - output: 
 root@574d98a6416e:/# 
 
@@ -136,3 +137,32 @@ I use play ground and when use port 8080 and get link when open it find content 
 https://66240ecb7c6e0b6f0508504f-ab6d62.node-d3b7.iximiuz.com/
 ```
 ![Example Image](1.png)
+
+
+---------------------------------------------------------------------
+# ITI - Docker Lab Two🐋
+## Task 1: Run a container using nginx image, and mount a directory from your host into the Docker container.
+example: /home/samy/nginx:/home/nginx (bind mount)
+
+### Steps
+#### 1. Create Bind Mount Directory
+```bash
+mkdir nginx_bindMount
+cd nginx_bindMount
+pwd
+```
+
+#### 2. Run a container using nginx image
+```bash
+docker run -d --name nginx_bindMount -v /root/nginx_bindMount:/user/share/nginx/html nginx
+docker exec -it nginx_bindMount bash
+```
+
+#### 3. Echo any content to show when curl ip-address
+```bash
+cd /user/share/nginx/html
+echo "Hello from Bind Mount Nginx" > index.html
+exit
+docker inspect -f '{{.NetworkSettings.IPAddress}}' nginx_bindMount    ->172.17.0.2
+curl 172.17.0.2
+```
